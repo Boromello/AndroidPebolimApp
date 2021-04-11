@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ghostapps.placapp.viewModel.gameScore.GameScoreViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <!-- Home team -->
+        <TextView
+            android:id="@+id/gameScoreHomeTeamName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.homeTeamName}"
+            app:layout_constraintBottom_toTopOf="@id/gameScoreHomeIncrease"
+            app:layout_constraintEnd_toEndOf="@id/gameScoreHomeTeamScore"
+            app:layout_constraintStart_toStartOf="@id/gameScoreHomeTeamScore"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Barcelona"/>
+
+        <ImageView
+            android:id="@+id/gameScoreHomeIncrease"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="15dp"
+            android:src="@android:drawable/arrow_up_float"
+            android:onClick="@{_ -> viewModel.onHomeTeamIncrease()}"
+            app:layout_constraintBottom_toTopOf="@id/gameScoreHomeTeamScore"
+            app:layout_constraintEnd_toEndOf="@id/gameScoreHomeTeamScore"
+            app:layout_constraintStart_toStartOf="@id/gameScoreHomeTeamScore" />
+
+        <TextView
+            android:id="@+id/gameScoreHomeTeamScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.formattedHomeTeamScore}"
+            android:textSize="100sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/gameScoreAwayTeamScore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00"/>
+
+        <TextView
+            android:id="@+id/gameScoreHomeTeamScoreSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.formattedHomeTeamScoreSet}"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@id/gameScoreHomeIncrease"
+            app:layout_constraintEnd_toEndOf="@+id/gameScoreHomeTeamName"
+            app:layout_constraintStart_toStartOf="@+id/gameScoreHomeTeamName"
+            tools:text="00"/>
+
+        <TextView
+            android:id="@+id/gameScoreHomeTeamScoreAdvPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.formattedHomeTeamScoreAdvPoint}"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="@+id/gameScoreHomeDecrease"
+            app:layout_constraintStart_toStartOf="@+id/gameScoreHomeDecrease"
+            app:layout_constraintTop_toBottomOf="@+id/gameScoreHomeDecrease"
+            tools:text="00"/>
+
+        <ImageView
+            android:id="@+id/gameScoreHomeDecrease"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="15dp"
+            android:src="@android:drawable/arrow_down_float"
+            android:onClick="@{_ -> viewModel.onHomeTeamDecrease()}"
+            app:layout_constraintEnd_toEndOf="@id/gameScoreHomeTeamScore"
+            app:layout_constraintStart_toStartOf="@id/gameScoreHomeTeamScore"
+            app:layout_constraintTop_toBottomOf="@id/gameScoreHomeTeamScore" />
+
+        <!-- Away team -->
+        <TextView
+            android:id="@+id/gameScoreAwayTeamName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.awayTeamName}"
+            app:layout_constraintBottom_toTopOf="@id/gameScoreAwayIncrease"
+            app:layout_constraintEnd_toEndOf="@id/gameScoreAwayTeamScore"
+            app:layout_constraintStart_toStartOf="@id/gameScoreAwayTeamScore"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Real Madrid" />
+
+        <ImageView
+            android:id="@+id/gameScoreAwayIncrease"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="15dp"
+            android:src="@android:drawable/arrow_up_float"
+            android:onClick="@{_ -> viewModel.onAwayTeamIncrease()}"
+            app:layout_constraintBottom_toTopOf="@id/gameScoreAwayTeamScore"
+            app:layout_constraintEnd_toEndOf="@id/gameScoreAwayTeamScore"
+            app:layout_constraintStart_toStartOf="@id/gameScoreAwayTeamScore" />
+
+        <TextView
+            android:id="@+id/gameScoreAwayTeamScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="100sp"
+            android:text="@={viewModel.formattedAwayTeamScore}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/gameScoreHomeTeamScore"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <TextView
+            android:id="@+id/gameScoreAwayTeamScoreSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.formattedAwayTeamScoreSet}"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@id/gameScoreAwayIncrease"
+            app:layout_constraintEnd_toEndOf="@+id/gameScoreAwayTeamName"
+            app:layout_constraintStart_toStartOf="@+id/gameScoreAwayTeamName"
+            tools:text="00"/>
+
+        <TextView
+            android:id="@+id/gameScoreAwayTeamScoreAdvPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.formattedAwayTeamScoreAdvPoint}"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="@+id/gameScoreAwayDecrease"
+            app:layout_constraintStart_toStartOf="@+id/gameScoreAwayDecrease"
+            app:layout_constraintTop_toBottomOf="@+id/gameScoreAwayDecrease"
+            tools:text="00"/>
+
+        <ImageView
+            android:id="@+id/gameScoreAwayDecrease"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="15dp"
+            android:src="@android:drawable/arrow_down_float"
+            android:onClick="@{_ -> viewModel.onAwayTeamDecrease()}"
+            app:layout_constraintEnd_toEndOf="@id/gameScoreAwayTeamScore"
+            app:layout_constraintStart_toStartOf="@id/gameScoreAwayTeamScore"
+            app:layout_constraintTop_toBottomOf="@id/gameScoreAwayTeamScore" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/gameScoreExitButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="@string/scoreGameExit"
+            android:textColor="@android:color/white"
+            android:onClick="@{_ -> viewModel.onExitPressed()}"
+            app:cornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

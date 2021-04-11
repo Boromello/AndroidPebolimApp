@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ghostapps.placapp.viewModel.preGame.PreGameViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/preGameToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/preGameGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <!-- Home Team -->
+        <TextView
+            android:id="@+id/preGameHomeTeamLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/preGameHomeTeamLabel"
+            app:layout_constraintBottom_toBottomOf="@id/preGameHomeTeamInput"
+            app:layout_constraintEnd_toStartOf="@id/preGameGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/preGameHomeTeamInput" />
+
+        <EditText
+            android:id="@+id/preGameHomeTeamInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:inputType="textCapWords"
+            android:text="@={viewModel.homeTeamName}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/preGameGuideline"
+            app:layout_constraintTop_toBottomOf="@id/preGameToolbar" />
+
+        <!-- Away Team -->
+        <TextView
+            android:id="@+id/preGameAwayTeamLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/preGameAwayTeamLabel"
+            app:layout_constraintBottom_toBottomOf="@id/preGameAwayTeamInput"
+            app:layout_constraintEnd_toStartOf="@id/preGameGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/preGameHomeTeamLabel"
+            app:layout_constraintTop_toTopOf="@id/preGameAwayTeamInput" />
+
+        <EditText
+            android:id="@+id/preGameAwayTeamInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:inputType="textCapWords"
+            android:text="@={viewModel.awayTeamName}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/preGameGuideline"
+            app:layout_constraintTop_toBottomOf="@id/preGameHomeTeamInput" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/preGameStartGameButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/preGameStart"
+            android:textColor="@android:color/white"
+            android:onClick="@{_ -> viewModel.onStartGamePressed()}"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
