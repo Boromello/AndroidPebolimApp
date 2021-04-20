@@ -1,22 +1,26 @@
 package com.ghostapps.placapp.viewModel.gameScore
 
-import android.app.AlertDialog
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
+import com.ghostapps.placapp.domain.models.RecordModel
+import com.ghostapps.placapp.domain.useCases.InsertRegister
 import com.ghostapps.placapp.viewModel.BaseViewModel
+import java.util.*
 
 class GameScoreViewModel(
-    private val contract: GameScoreContract
+    private val contract: GameScoreContract,
+    private val insertRegister: InsertRegister
 ): BaseViewModel() {
 
     var homeTeamName = ""
     var awayTeamName = ""
 
-    var homeTeamScore = 0
-    var awayTeamScore = 0
-    var homeTeamScoreSet = 0
-    var awayTeamScoreSet = 0
-    var homeTeamScoreAdvPoint = 0
-    var awayTeamScoreAdvPoint = 0
+    private var homeTeamScore = 0
+    private var awayTeamScore = 0
+    private var homeTeamScoreSet = 0
+    private var awayTeamScoreSet = 0
+    private var homeTeamScoreAdvPoint = 0
+    private var awayTeamScoreAdvPoint = 0
 
     var formattedHomeTeamScore = "00"
     var formattedAwayTeamScore = "00"
@@ -67,14 +71,43 @@ class GameScoreViewModel(
     }
 
     fun onExitPressed() {
-        contract.onExitPressed()
+        /*DESATIVEI POIS A MINHA INSERCAO SE DA NO MOMENTO QUE UM DOS JOGADORES ATINGE OS
+             11 PTS
+        Thread {
+
+            val success = insertRegister.execute(RecordModel(
+                homeTeamName = homeTeamName,
+                homeTeamScore = homeTeamScore,
+                awayTeamName = awayTeamName,
+                awayTeamScore = awayTeamScore,
+                date = Date().time
+            ))*/
+
+            contract.onExitPressed()
+            /*
+            if (success) {
+                contract.onExitPressed()
+            } else {
+                contract.onInsertRegisterFails()
+            }
+
+        }.start()*/
     }
 
-    private fun updateScore() {
+    fun updateScore() {
         if ((homeTeamScore == 10) && (awayTeamScore == 10) && ((homeTeamScoreAdvPoint > 0) || (awayTeamScoreAdvPoint > 0))) {
             updateScoreAdvPoint()
         }else if ((homeTeamScore == 11) || (awayTeamScore == 11)) {
-            updateScoreSet()
+            Thread {
+            insertRegister.execute(RecordModel(
+                homeTeamName = homeTeamName,
+                homeTeamScore = homeTeamScore,
+                awayTeamName = awayTeamName,
+                awayTeamScore = awayTeamScore,
+                date = Date().time
+            ))
+                updateScoreSet()
+            }.start()
         }
         formattedHomeTeamScore = String.format("%02d", homeTeamScore)
         formattedAwayTeamScore = String.format("%02d", awayTeamScore)
@@ -82,7 +115,7 @@ class GameScoreViewModel(
         notifyChange()
     }
 
-    private fun updateScoreSet() {
+    fun updateScoreSet() {
         if ((homeTeamScore == 11) || (homeTeamScoreAdvPoint - awayTeamScoreAdvPoint == 2)) {
             homeTeamScoreSet++
         }else if ((awayTeamScore == 11) || (awayTeamScoreAdvPoint - homeTeamScoreAdvPoint == 2)) {
@@ -105,6 +138,7 @@ class GameScoreViewModel(
             }
             homeTeamScoreSet = 0
             awayTeamScoreSet = 0
+            contract.onExitPressed()
             //NAO CONSEGUI COLOCAR A CAIXA DE DIALOGO PARA EXIBIR O CAMPEAO
 //            val builder = AlertDialog.Builder(this.contract.)
 //            builder.setTitle("Temos um Vencedor!")
@@ -121,7 +155,7 @@ class GameScoreViewModel(
         }
     }
 
-    private fun updateScoreAdvPoint() {
+    fun updateScoreAdvPoint() {
         if ((homeTeamScoreAdvPoint > awayTeamScoreAdvPoint ) && (homeTeamScoreAdvPoint - awayTeamScoreAdvPoint == 2)) {
             updateScoreSet()
         }else if ((awayTeamScoreAdvPoint > homeTeamScoreAdvPoint) && (awayTeamScoreAdvPoint - homeTeamScoreAdvPoint == 2)) {
@@ -129,14 +163,13 @@ class GameScoreViewModel(
         }
     }
 
-    private fun updateScoreHomeAdvPoint() {
+    fun updateScoreHomeAdvPoint() {
         homeTeamScoreAdvPoint++
         formattedHomeTeamScoreAdvPoint = String.format("%02d", homeTeamScoreAdvPoint)
     }
 
-    private fun updateScoreAwayAdvPoint() {
+    fun updateScoreAwayAdvPoint() {
         awayTeamScoreAdvPoint++
         formattedAwayTeamScoreAdvPoint = String.format("%02d", awayTeamScoreAdvPoint)
     }
-
 }

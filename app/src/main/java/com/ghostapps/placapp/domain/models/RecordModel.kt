@@ -4,8 +4,9 @@ class RecordModel(
     val homeTeamName: String,
     val homeTeamScore: Int,
 
+
     val awayTeamName: String,
     val awayTeamScore: Int,
 
-    val data: Long
+    val date: Long
 )

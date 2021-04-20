@@ -1,6 +1,6 @@
-package com.ghostapps.placapp.data.records.useCases
+package com.ghostapps.placapp.data.records.local.useCases
 
-import com.ghostapps.placapp.data.records.RecordDatabase
+import com.ghostapps.placapp.data.records.local.RecordDatabase
 import com.ghostapps.placapp.domain.models.RecordModel
 import com.ghostapps.placapp.domain.useCases.GetAllRegister
 

@@ -10,13 +10,16 @@ abstract class BaseViewModel: ViewModel(), Observable {
     private var mCallbacks: PropertyChangeRegistry? = null
 
     override fun addOnPropertyChangedCallback(callback: OnPropertyChangedCallback) {
-        if (mCallbacks == null){
+        if(mCallbacks == null) {
             mCallbacks = PropertyChangeRegistry()
         }
         mCallbacks!!.add(callback)
     }
 
     override fun removeOnPropertyChangedCallback(callback: OnPropertyChangedCallback) {
+        if(mCallbacks == null) {
+            return
+        }
         mCallbacks!!.remove(callback)
     }
 
@@ -24,6 +27,6 @@ abstract class BaseViewModel: ViewModel(), Observable {
      * Notifies listeners that all properties of this instance have changed.
      */
     fun notifyChange() {
-        mCallbacks!!.notifyCallbacks(this, 0, null)
+        mCallbacks?.notifyCallbacks(this, 0, null)
     }
 }

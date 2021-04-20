@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ghostapps.placapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".main.PlacApp"
         android:allowBackup="true"
@@ -18,6 +20,7 @@
         </activity>
         <activity android:name=".ui.preGame.PreGameActivity" />
         <activity android:name=".ui.gameScore.GameScoreActivity" />
+        <activity android:name=".ui.gameRecords.GameRecordsActivity" />
     </application>
 
 </manifest>

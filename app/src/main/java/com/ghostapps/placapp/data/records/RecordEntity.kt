@@ -3,17 +3,24 @@ package com.ghostapps.placapp.data.records
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ghostapps.placapp.domain.models.RecordModel
-@Entity(tableName = "records_database")
+import com.google.gson.annotations.SerializedName
+
+@Entity(tableName = RecordEntity.TABLE_NAME)
 class RecordEntity(
 
+    @SerializedName("team_a_name")
     val homeTeamName: String,
+    @SerializedName("team_a_score")
     val homeTeamScore: Int,
 
+    @SerializedName("team_b_name")
     val awayTeamName: String,
+    @SerializedName("team_b_score")
     val awayTeamScore: Int,
 
     @PrimaryKey
-    val data: Long
+    @SerializedName("timestamp")
+    val date: Long
 ) {
     companion object {
         const val TABLE_NAME = "records_database"
@@ -24,7 +31,7 @@ class RecordEntity(
                 homeTeamScore = recordModel.homeTeamScore,
                 awayTeamName = recordModel.awayTeamName,
                 awayTeamScore = recordModel.awayTeamScore,
-                data = recordModel.data
+                date = recordModel.date
             )
         }
     }
@@ -35,7 +42,7 @@ class RecordEntity(
             homeTeamScore = homeTeamScore,
             awayTeamName = awayTeamName,
             awayTeamScore = awayTeamScore,
-            data = data
+            date = date
         )
     }
 }
