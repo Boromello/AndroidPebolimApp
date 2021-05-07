@@ -1,7 +1,6 @@
 package com.ghostapps.placapp.viewModel.gameScore
 
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import com.ghostapps.placapp.domain.models.RecordModel
 import com.ghostapps.placapp.domain.useCases.InsertRegister
 import com.ghostapps.placapp.viewModel.BaseViewModel
@@ -139,19 +138,6 @@ class GameScoreViewModel(
             homeTeamScoreSet = 0
             awayTeamScoreSet = 0
             contract.onExitPressed()
-            //NAO CONSEGUI COLOCAR A CAIXA DE DIALOGO PARA EXIBIR O CAMPEAO
-//            val builder = AlertDialog.Builder(this.contract.)
-//            builder.setTitle("Temos um Vencedor!")
-//            if (homeTeamScore > awayTeamScore) {
-//                builder.setMessage(awayTeamName)
-//            }else {
-//                builder.setMessage(homeTeamName)
-//            }
-//            builder.setPositiveButton("OK"){dialog, which ->
-//                dialog.dismiss()
-//            }
-//            val dialog: AlertDialog = builder.create()
-//            dialog.show()
         }
     }
 

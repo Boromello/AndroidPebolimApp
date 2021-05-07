@@ -8,8 +8,12 @@ class GetAllLocalRegister(
     private val database: RecordDatabase
 ) : GetAllRegister {
 
-    override fun execute(): Array<RecordModel> {
-        return database.recordDao().getRecords().map { recordEntity -> recordEntity.toModel() }.toTypedArray()
+    fun execute(): Array<RecordModel> {
+        return  database.recordDao().getRecords().map { recordEntity -> recordEntity.toModel() }.toTypedArray()
+    }
+
+    override fun execute(successCallback: (recordList: Array<RecordModel>) -> Unit) {
+        TODO("Not yet implemented")
     }
 
 }

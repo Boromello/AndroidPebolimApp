@@ -8,18 +8,18 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = RecordEntity.TABLE_NAME)
 class RecordEntity(
 
-    @SerializedName("team_a_name")
+    //@SerializedName("team_a_name")
     val homeTeamName: String,
-    @SerializedName("team_a_score")
+    //@SerializedName("team_a_score")
     val homeTeamScore: Int,
 
-    @SerializedName("team_b_name")
+    //@SerializedName("team_b_name")
     val awayTeamName: String,
-    @SerializedName("team_b_score")
+    //@SerializedName("team_b_score")
     val awayTeamScore: Int,
 
     @PrimaryKey
-    @SerializedName("timestamp")
+    //@SerializedName("timestamp")
     val date: Long
 ) {
     companion object {

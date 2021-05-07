@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "350651561815",
+    "project_id": "placarpingpong",
+    "storage_bucket": "placarpingpong.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350651561815:android:f27f5e60ade0671878f012",
+        "android_client_info": {
+          "package_name": "com.ghostapps.placapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350651561815-9gbk05a6qje0seci0p154e6tvsgkduv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ghostapps.placapp",
+            "certificate_hash": "3eca324155cc817d88eaeaf40fc9b1a1ee98a7a6"
+          }
+        },
+        {
+          "client_id": "350651561815-e5d7kn524m2q0vnm9t1b23e9sso1l2hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxLKnekcHCCCzn7aguPuBUkAR08R1cMT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350651561815-e5d7kn524m2q0vnm9t1b23e9sso1l2hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

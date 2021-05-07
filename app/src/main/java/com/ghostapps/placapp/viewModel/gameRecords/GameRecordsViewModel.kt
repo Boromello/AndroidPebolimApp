@@ -11,13 +11,39 @@ class GameRecordsViewModel(
     private val deleteRegister: DeleteRegister
 ): BaseViewModel() {
 
-    val recordsList = MutableLiveData<Array<RecordModel>>()
+    val recordsList = MutableLiveData<List<RecordsItem>>()
 
     fun loadRecords() {
+        /*Thread {
+            val records = getAllRegister.execute()
+            records.sortByDescending { it.date }
+
+            recordsList.postValue(records)
+        }.start()*/
         Thread {
-            recordsList.postValue(getAllRegister.execute())
+            getAllRegister.execute (
+                successCallback = {
+                    val recordsModel = it.flatMap { recordModel ->
+                        val recordList = arrayListOf<RecordsItem>()
+
+                        recordList.add(
+                            RecordsItem(
+                                homeTeamName = recordModel.homeTeamName,
+                                homeTeamScore = recordModel.homeTeamScore,
+                                awayTeamName = recordModel.awayTeamName,
+                                awayTeamScore = recordModel.awayTeamScore,
+                                date = recordModel.date
+                            )
+                        )
+                        recordList
+                    }
+                    recordsList.postValue(recordsModel)
+                })
         }.start()
+
     }
+
+
 
     fun deleteRegister(recordModel: RecordModel) {
         Thread {
